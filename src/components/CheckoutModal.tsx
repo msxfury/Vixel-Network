@@ -203,12 +203,25 @@ export default function CheckoutModal({ isOpen, onClose, itemName, price, qrImag
                       alt={`${itemName} Scanner`} 
                       className="w-full h-full object-contain rounded-lg"
                       onError={(e) => {
+                        try {
+                          const img = e.currentTarget as HTMLImageElement;
+                          // Try an absolute URL fallback first
+                          const fallbackSrc = (qrImage || '/Rs.149.jpg').startsWith('/') ? window.location.origin + (qrImage || '/Rs.149.jpg') : (qrImage || '/Rs.149.jpg');
+                          if (img.src !== fallbackSrc) {
+                            console.warn('Attempting absolute fallback for image:', fallbackSrc);
+                            img.src = fallbackSrc;
+                            return;
+                          }
+                        } catch (err) {
+                          console.error('Error handling image fallback', err);
+                        }
+
                         e.currentTarget.style.display = 'none';
                         const fallback = e.currentTarget.parentElement?.querySelector('svg');
                         if (fallback) {
-                          fallback.style.display = 'block';
-                          fallback.style.width = '100%';
-                          fallback.style.height = '100%';
+                          (fallback as HTMLElement).style.display = 'block';
+                          (fallback as HTMLElement).style.width = '100%';
+                          (fallback as HTMLElement).style.height = '100%';
                         }
                       }}
                     />
