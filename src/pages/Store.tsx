@@ -4,7 +4,7 @@ import { Crown, Sparkles, Star, Shield, ArrowRight } from 'lucide-react';
 import CheckoutModal from '../components/CheckoutModal';
 
 export default function Store() {
-  const [checkoutItem, setCheckoutItem] = useState<{ name: string; price: string } | null>(null);
+  const [checkoutItem, setCheckoutItem] = useState<{ name: string; price: string; qrImage: string } | null>(null);
 
   const ranks = [
     {
@@ -15,6 +15,7 @@ export default function Store() {
       border: 'border-green-500/20',
       btnHover: 'hover:bg-green-500 hover:text-white hover:border-green-500',
       icon: <Star size={28} className="text-green-400" />,
+      qrImage: '/Rs.149.jpg',
       features: [
         'Colored VIP chat tag',
         '/fly in lobby',
@@ -31,6 +32,7 @@ export default function Store() {
       border: 'border-blue-500/20',
       btnHover: 'hover:bg-blue-500 hover:text-white hover:border-blue-500',
       icon: <Shield size={28} className="text-blue-400" />,
+      qrImage: '/Rs.349.jpg',
       features: [
         'Glowing MVP chat tag',
         'Everything in VIP',
@@ -47,6 +49,7 @@ export default function Store() {
       border: 'border-purple-500/20',
       btnHover: 'hover:bg-purple-500 hover:text-white hover:border-purple-500',
       icon: <Crown size={28} className="text-purple-400" />,
+      qrImage: '/Rs.699.jpg',
       features: [
         'Prismatic ELITE tag',
         'Everything in MVP',
@@ -63,6 +66,7 @@ export default function Store() {
       border: 'border-yellow-500/20',
       btnHover: 'hover:bg-yellow-500 hover:text-black hover:border-yellow-500',
       icon: <Sparkles size={28} className="text-yellow-400" />,
+      qrImage: '/Rs.1499.jpg',
       features: [
         'Animated Vixel-GOD tag',
         'All previous ranks perks',
@@ -111,7 +115,7 @@ export default function Store() {
               </ul>
 
               <button 
-                onClick={() => setCheckoutItem({ name: `${rank.name} Rank`, price: rank.price })}
+                onClick={() => setCheckoutItem({ name: `${rank.name} Rank`, price: rank.price, qrImage: rank.qrImage })}
                 className={`mt-auto w-full py-3 rounded-xl font-semibold border ${rank.border} ${rank.color} ${rank.btnHover} transition-all duration-300 bg-white/5`}
               >
                 Purchase
@@ -126,6 +130,7 @@ export default function Store() {
         onClose={() => setCheckoutItem(null)}
         itemName={checkoutItem?.name || ''}
         price={checkoutItem?.price || ''}
+        qrImage={checkoutItem?.qrImage || '/Rs.149.jpg'}
       />
     </div>
   );

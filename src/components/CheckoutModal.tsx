@@ -6,9 +6,10 @@ interface CheckoutModalProps {
   onClose: () => boolean | void;
   itemName: string;
   price: string;
+  qrImage?: string;
 }
 
-export default function CheckoutModal({ isOpen, onClose, itemName, price }: CheckoutModalProps) {
+export default function CheckoutModal({ isOpen, onClose, itemName, price, qrImage }: CheckoutModalProps) {
   const [ign, setIgn] = useState('');
   const [email, setEmail] = useState('');
   const [utr, setUtr] = useState('');
@@ -185,7 +186,7 @@ export default function CheckoutModal({ isOpen, onClose, itemName, price }: Chec
                   {/* QR Code / Scanner Image */}
                   <div className="w-28 h-28 bg-white p-2 rounded-xl flex items-center justify-center shrink-0 shadow-lg shadow-black/20 overflow-hidden">
                     <img 
-                      src={`/Rs.${price.replace(/[^0-9]/g, '')}.jpg`} 
+                      src={qrImage || '/Rs.149.jpg'}
                       alt={`${itemName} Scanner`} 
                       className="w-full h-full object-cover rounded-lg"
                       onError={(e) => {
