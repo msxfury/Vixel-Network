@@ -10,6 +10,19 @@ interface CheckoutModalProps {
 }
 
 export default function CheckoutModal({ isOpen, onClose, itemName, price, qrImage }: CheckoutModalProps) {
+  React.useEffect(() => {
+    try {
+      console.log('CheckoutModal mounted - qrImage:', qrImage);
+      const el = document.querySelector('img[alt$="Scanner"]') as HTMLImageElement | null;
+      if (el) {
+        console.log('CheckoutModal image src (initial):', el.getAttribute('src'), 'resolved:', el.src);
+        el.addEventListener('error', () => console.error('CheckoutModal image failed to load:', el.src));
+        el.addEventListener('load', () => console.log('CheckoutModal image loaded:', el.naturalWidth, el.naturalHeight));
+      }
+    } catch (e) {
+      console.error('CheckoutModal debug error', e);
+    }
+  }, [qrImage]);
   const [ign, setIgn] = useState('');
   const [email, setEmail] = useState('');
   const [utr, setUtr] = useState('');
