@@ -188,11 +188,15 @@ export default function CheckoutModal({ isOpen, onClose, itemName, price, qrImag
                     <img 
                       src={qrImage || '/Rs.149.jpg'}
                       alt={`${itemName} Scanner`} 
-                      className="w-full h-full object-cover rounded-lg"
+                      className="w-full h-full object-contain rounded-lg"
                       onError={(e) => {
                         e.currentTarget.style.display = 'none';
                         const fallback = e.currentTarget.parentElement?.querySelector('svg');
-                        if (fallback) fallback.style.display = 'block';
+                        if (fallback) {
+                          fallback.style.display = 'block';
+                          fallback.style.width = '100%';
+                          fallback.style.height = '100%';
+                        }
                       }}
                     />
                     <svg viewBox="0 0 100 100" className="w-full h-full text-black" style={{ display: 'none' }}>
