@@ -197,34 +197,21 @@ export default function CheckoutModal({ isOpen, onClose, itemName, price, qrImag
                 
                 <div className="flex flex-col sm:flex-row items-center gap-5">
                   {/* QR Code / Scanner Image */}
-                  <div className="w-28 h-28 bg-white p-2 rounded-xl flex items-center justify-center shrink-0 shadow-lg shadow-black/20 overflow-hidden">
-                    <img 
-                      src={qrImage || '/Rs.149.jpg'}
-                      alt={`${itemName} Scanner`} 
-                      className="w-full h-full object-cover rounded-lg"
-                      onError={(e) => {
-                        try {
-                          const img = e.currentTarget as HTMLImageElement;
-                          // Try an absolute URL fallback first
-                          const fallbackSrc = (qrImage || '/Rs.149.jpg').startsWith('/') ? window.location.origin + (qrImage || '/Rs.149.jpg') : (qrImage || '/Rs.149.jpg');
-                          if (img.src !== fallbackSrc) {
-                            console.warn('Attempting absolute fallback for image:', fallbackSrc);
-                            img.src = fallbackSrc;
-                            return;
-                          }
-                        } catch (err) {
-                          console.error('Error handling image fallback', err);
-                        }
-
-                        e.currentTarget.style.display = 'none';
-                        const fallback = e.currentTarget.parentElement?.querySelector('svg');
-                        if (fallback) {
-                          (fallback as HTMLElement).style.display = 'block';
-                          (fallback as HTMLElement).style.width = '100%';
-                          (fallback as HTMLElement).style.height = '100%';
-                        }
+                  <div className="w-28 h-28 bg-white p-2 rounded-xl shrink-0 shadow-lg shadow-black/20 overflow-hidden">
+                    <div
+                      role="img"
+                      aria-label={`${itemName} Scanner`}
+                      style={{
+                        backgroundImage: `url(${qrImage || '/Rs.149.jpg'})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        width: '100%',
+                        height: '100%',
+                        borderRadius: '0.5rem'
                       }}
+                      className="rounded-lg"
                     />
+                  </div>
                     <svg viewBox="0 0 100 100" className="w-full h-full text-black" style={{ display: 'none' }}>
                       {/* Generates a stylized decorative QR pattern */}
                       <path d="M 5,5 h 25 v 25 h -25 z M 5,70 h 25 v 25 h -25 z M 70,5 h 25 v 25 h -25 z" fill="currentColor" />
