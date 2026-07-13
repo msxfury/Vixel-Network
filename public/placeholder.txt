@@ -1,0 +1,3 @@
+This is a placeholder file to make the 'public' folder visible in your file explorer.
+You can upload or place your custom logo image inside this folder!
+Once you upload it, name it 'logo.png' (for example: /public/logo.png), and let me know. I can then automatically update the code to display your new logo!

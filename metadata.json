@@ -1,0 +1,6 @@
+{
+  "name": "Vixel Network",
+  "description": "A Minecraft themed website for Vixel Network server.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
