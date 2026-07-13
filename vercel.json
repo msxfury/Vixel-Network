@@ -19,7 +19,7 @@
       "dest": "/api/$1"
     },
     {
-      "src": "/(.*)",
+      "src": "/((?!api/|assets/|.*\\..*).*)",
       "dest": "/index.html"
     }
   ]
