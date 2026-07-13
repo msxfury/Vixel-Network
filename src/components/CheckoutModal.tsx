@@ -201,7 +201,7 @@ export default function CheckoutModal({ isOpen, onClose, itemName, price, qrImag
                     <img 
                       src={qrImage || '/Rs.149.jpg'}
                       alt={`${itemName} Scanner`} 
-                      className="w-full h-full object-contain rounded-lg"
+                      className="w-full h-full object-cover rounded-lg"
                       onError={(e) => {
                         try {
                           const img = e.currentTarget as HTMLImageElement;
